@@ -1,0 +1,73 @@
+---
+import Card from '@/components/common/Card.astro';
+import { COMPANY } from '@/utils/constants';
+---
+
+<div class="space-y-6">
+  <Card>
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">회사 정보</h3>
+    <div class="space-y-4 text-sm">
+      {COMPANY.address && (
+        <div>
+          <span class="text-gray-400 dark:text-gray-500">주소</span>
+          <p class="text-gray-700 dark:text-gray-300">{COMPANY.address}</p>
+        </div>
+      )}
+      {COMPANY.phone && (
+        <div>
+          <span class="text-gray-400 dark:text-gray-500">대표 전화</span>
+          <p class="text-gray-700 dark:text-gray-300">{COMPANY.phone}</p>
+        </div>
+      )}
+      {COMPANY.email && (
+        <div>
+          <span class="text-gray-400 dark:text-gray-500">이메일</span>
+          <p class="text-gray-700 dark:text-gray-300">
+            <a href={`mailto:${COMPANY.email}`} class="text-primary dark:text-primary-light hover:underline">
+              {COMPANY.email}
+            </a>
+          </p>
+        </div>
+      )}
+      {COMPANY.fax && (
+        <div>
+          <span class="text-gray-400 dark:text-gray-500">팩스</span>
+          <p class="text-gray-700 dark:text-gray-300">{COMPANY.fax}</p>
+        </div>
+      )}
+    </div>
+  </Card>
+
+  <Card>
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">문의 전 안내</h3>
+    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">
+      보다 정확한 상담을 위해 아래 내용을 함께 남겨주시면 빠르게 검토할 수 있습니다.
+    </p>
+    <ul class="space-y-1.5 text-sm text-gray-500 dark:text-gray-400">
+      <li class="flex items-start gap-2">
+        <span class="text-primary-medium dark:text-primary-light mt-0.5">·</span>
+        구축하고자 하는 시스템의 목적
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-primary-medium dark:text-primary-light mt-0.5">·</span>
+        보유 중인 데이터 종류
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-primary-medium dark:text-primary-light mt-0.5">·</span>
+        연동이 필요한 장비 또는 외부 시스템
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-primary-medium dark:text-primary-light mt-0.5">·</span>
+        원하는 표출 방식
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-primary-medium dark:text-primary-light mt-0.5">·</span>
+        예상 일정 및 예산 범위
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="text-primary-medium dark:text-primary-light mt-0.5">·</span>
+        유지보수 필요 여부
+      </li>
+    </ul>
+  </Card>
+</div>
