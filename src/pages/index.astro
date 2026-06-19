@@ -1,16 +1,9 @@
 ---
+import PageLayout from '@/layouts/PageLayout.astro';
 ---
 
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Koast</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  </head>
-  <body class="font-sans text-gray-800">
-    <main class="flex items-center justify-center min-h-screen">
-      <h1 class="text-4xl font-bold">Koast</h1>
-    </main>
-  </body>
-</html>
+<PageLayout>
+  <section class="flex items-center justify-center min-h-[60vh]">
+    <h1 class="text-4xl font-bold text-primary dark:text-primary-light">Koast</h1>
+  </section>
+</PageLayout>

@@ -1,0 +1,30 @@
+---
+import SEOHead from '@/components/common/SEOHead.astro';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage } = Astro.props;
+---
+
+<html lang="ko">
+  <head>
+    <SEOHead title={title} description={description} ogImage={ogImage} />
+    <!-- Dark mode FOUC prevention -->
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+    <slot />
+  </body>
+</html>

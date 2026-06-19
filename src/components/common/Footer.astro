@@ -1,0 +1,38 @@
+---
+import { SITE, NAV_LINKS, COMPANY } from '@/utils/constants';
+---
+
+<footer class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between gap-8">
+      <!-- Company info -->
+      <div>
+        <a href={`${SITE.base}/`} class="text-lg font-bold text-primary dark:text-primary-light">
+          {SITE.name}
+        </a>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 max-w-xs">
+          {SITE.description}
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex flex-wrap gap-x-8 gap-y-2">
+        {NAV_LINKS.map((link) => (
+          <a
+            href={link.href === '/' ? `${SITE.base}/` : `${SITE.base}${link.href}`}
+            class="text-sm text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors"
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Copyright -->
+    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center">
+      <p class="text-sm text-gray-400 dark:text-gray-500">
+        &copy; {new Date().getFullYear()} {COMPANY.name}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

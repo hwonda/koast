@@ -1,0 +1,13 @@
+---
+import Navigation from './Navigation.tsx';
+import { NAV_LINKS, SITE } from '@/utils/constants';
+---
+
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="relative max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href={`${SITE.base}/`} class="text-xl font-bold text-primary dark:text-primary-light">
+      {SITE.name}
+    </a>
+    <Navigation links={NAV_LINKS} base={SITE.base} client:load />
+  </div>
+</header>
