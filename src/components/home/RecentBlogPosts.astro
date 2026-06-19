@@ -1,10 +1,14 @@
 ---
 import SectionHeading from '@/components/common/SectionHeading.astro';
+import BlogCard from '@/components/blog/BlogCard.astro';
 import Button from '@/components/common/Button.astro';
 import { SITE } from '@/utils/constants';
+import { getCollection } from 'astro:content';
 
-// Phase 4에서 Content Collections 연결 예정
-// 지금은 placeholder
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf())
+  .slice(0, 3);
 ---
 
 <section class="bg-gray-50 dark:bg-gray-800/50">
@@ -14,11 +18,26 @@ import { SITE } from '@/utils/constants';
       subtitle="기술 인사이트와 회사 소식을 공유합니다."
     />
 
-    <div class="text-center text-gray-400 dark:text-gray-500 py-12">
-      <p>블로그 포스트 준비 중입니다.</p>
-    </div>
+    {posts.length > 0 ? (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            publishedAt={post.data.publishedAt}
+            category={post.data.category}
+            tags={post.data.tags}
+            slug={post.id}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center text-gray-400 dark:text-gray-500 py-12">
+        <p>블로그 포스트 준비 중입니다.</p>
+      </div>
+    )}
 
-    <div class="text-center">
+    <div class="mt-10 text-center">
       <Button href={`${SITE.base}/blog`} variant="secondary">
         블로그 보기
       </Button>

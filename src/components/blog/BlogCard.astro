@@ -1,0 +1,44 @@
+---
+import Card from '@/components/common/Card.astro';
+import { formatDate } from '@/utils/formatDate';
+import { SITE } from '@/utils/constants';
+
+interface Props {
+  title: string;
+  description: string;
+  publishedAt: Date;
+  category: string;
+  tags: string[];
+  slug: string;
+}
+
+const { title, description, publishedAt, category, tags, slug } = Astro.props;
+---
+
+<a href={`${SITE.base}/blog/${slug}`} class="block group">
+  <Card class="h-full hover:border-primary-light/50 transition-colors">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="text-xs px-2 py-0.5 rounded-full bg-primary-light/10 text-primary dark:text-primary-light font-medium">
+        {category}
+      </span>
+      <span class="text-xs text-gray-400 dark:text-gray-500">
+        {formatDate(publishedAt)}
+      </span>
+    </div>
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary-light transition-colors">
+      {title}
+    </h3>
+    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
+      {description}
+    </p>
+    {tags.length > 0 && (
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        {tags.map((tag) => (
+          <span class="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </Card>
+</a>

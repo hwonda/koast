@@ -1,0 +1,84 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/common/Header.astro';
+import Footer from '@/components/common/Footer.astro';
+import Button from '@/components/common/Button.astro';
+import { formatDate } from '@/utils/formatDate';
+import { SITE } from '@/utils/constants';
+
+interface Props {
+  title: string;
+  description: string;
+  publishedAt: Date;
+  updatedAt?: Date;
+  author: string;
+  category: string;
+  tags: string[];
+}
+
+const { title, description, publishedAt, updatedAt, author, category, tags } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  <main class="min-h-screen">
+    <article class="max-w-3xl mx-auto px-6 py-16">
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-xs px-2 py-0.5 rounded-full bg-primary-light/10 text-primary dark:text-primary-light font-medium">
+            {category}
+          </span>
+          <span class="text-xs text-gray-400 dark:text-gray-500">
+            {formatDate(publishedAt)}
+          </span>
+          {updatedAt && (
+            <span class="text-xs text-gray-400 dark:text-gray-500">
+              (수정: {formatDate(updatedAt)})
+            </span>
+          )}
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+          {title}
+        </h1>
+        <p class="mt-4 text-lg text-gray-500 dark:text-gray-400">
+          {description}
+        </p>
+        <div class="mt-4 flex items-center gap-2 text-sm text-gray-400 dark:text-gray-500">
+          <span>{author}</span>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-gray dark:prose-invert max-w-none
+        prose-headings:text-gray-900 dark:prose-headings:text-white
+        prose-a:text-primary dark:prose-a:text-primary-light
+        prose-code:text-primary-medium dark:prose-code:text-primary-light
+        prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+        prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800">
+        <slot />
+      </div>
+
+      <!-- Tags -->
+      {tags.length > 0 && (
+        <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Back -->
+      <div class="mt-10">
+        <Button href={`${SITE.base}/blog`} variant="outline" size="sm">
+          ← 블로그 목록으로
+        </Button>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
