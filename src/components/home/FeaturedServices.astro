@@ -1,0 +1,43 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import Card from '@/components/common/Card.astro';
+import Button from '@/components/common/Button.astro';
+import { SERVICES } from '@/data/services';
+import { SITE } from '@/utils/constants';
+
+const iconMap: Record<string, string> = {
+  Radar: '📡',
+  Cpu: '🔧',
+  LineChart: '📈',
+  Globe: '🌐',
+  Monitor: '🖥️',
+  Building: '🏛️',
+};
+---
+
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <SectionHeading
+    title="주요 서비스"
+    subtitle="관측부터 시각화까지, 해양·기상 데이터 활용에 필요한 전 과정을 제공합니다."
+  />
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {SERVICES.map((service) => (
+      <Card>
+        <div class="text-3xl mb-4">{iconMap[service.icon] || '💻'}</div>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+          {service.title}
+        </h3>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+          {service.description}
+        </p>
+      </Card>
+    ))}
+  </div>
+
+  <div class="mt-10 text-center">
+    <Button href={`${SITE.base}/services`} variant="secondary">
+      서비스 자세히 보기
+    </Button>
+  </div>
+</section>

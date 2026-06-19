@@ -1,8 +1,9 @@
 export const SITE = {
-  name: 'Koast',
+  name: '한국해양기상기술',
   url: 'https://hwonda.github.io',
   base: '/koast',
-  description: 'IT/소프트웨어 회사 Koast의 공식 홈페이지',
+  description:
+    '해양·기상 데이터를 수집하고, 예측하고, 시각화하는 통합 기술기업',
   locale: 'ko_KR',
   ogImage: '/images/og-image.png',
 };
@@ -17,10 +18,11 @@ export const NAV_LINKS = [
 ];
 
 export const COMPANY = {
-  name: 'Koast',
-  email: 'contact@koast.com',
+  name: '한국해양기상기술',
+  email: '',
   phone: '',
   address: '',
+  fax: '',
   social: {
     github: 'https://github.com/hwonda',
   },

@@ -1,0 +1,22 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { SOLUTIONS } from '@/data/services';
+---
+
+<section class="bg-gray-50 dark:bg-gray-800/50">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <SectionHeading
+      title="대표 솔루션"
+      subtitle="자체 개발한 소프트웨어와 하드웨어로 현장의 문제를 해결합니다."
+    />
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {SOLUTIONS.map((solution) => (
+        <div class="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+          <div class="w-2 h-2 rounded-full bg-primary-medium dark:bg-primary-light shrink-0"></div>
+          <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{solution}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

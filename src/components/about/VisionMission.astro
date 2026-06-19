@@ -1,0 +1,71 @@
+---
+import Card from '@/components/common/Card.astro';
+import { VISION, MISSION, CORE_VALUES } from '@/data/company';
+---
+
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <!-- Company overview -->
+  <div class="max-w-3xl mb-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+      회사 개요
+    </h2>
+    <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+      {VISION.description}
+    </p>
+    <div class="mt-6 grid grid-cols-2 gap-4 text-sm">
+      <div>
+        <span class="text-gray-400 dark:text-gray-500">회사명</span>
+        <p class="font-medium text-gray-800 dark:text-gray-200">한국해양기상기술</p>
+      </div>
+      <div>
+        <span class="text-gray-400 dark:text-gray-500">분야</span>
+        <p class="font-medium text-gray-800 dark:text-gray-200">해양·기상 데이터 기반 통합 솔루션</p>
+      </div>
+      <div>
+        <span class="text-gray-400 dark:text-gray-500">주요 고객</span>
+        <p class="font-medium text-gray-800 dark:text-gray-200">공공기관, 연구기관, 해양·기상 관련 기업</p>
+      </div>
+      <div>
+        <span class="text-gray-400 dark:text-gray-500">핵심 역량</span>
+        <p class="font-medium text-gray-800 dark:text-gray-200">관측, 수집, 예측, 분석, 시각화, 시스템 구축</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vision -->
+  <div class="bg-primary dark:bg-primary/90 rounded-2xl p-8 md:p-12 mb-16 text-white">
+    <p class="text-sm font-medium text-primary-light/80 mb-2">비전</p>
+    <h3 class="text-2xl md:text-3xl font-bold">
+      {VISION.title}
+    </h3>
+    <p class="mt-2 text-lg text-primary-light/80">
+      해양·기상 데이터를 더 정확하게 이해하고, 더 빠르게 활용할 수 있는 기술을 만듭니다.
+    </p>
+  </div>
+
+  <!-- Mission -->
+  <div class="mb-16">
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">미션</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      {MISSION.items.map((item) => (
+        <div class="flex items-start gap-3 p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
+          <div class="w-2 h-2 mt-2 rounded-full bg-primary-medium dark:bg-primary-light shrink-0"></div>
+          <p class="text-gray-700 dark:text-gray-300">{item}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Core Values -->
+  <div>
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">핵심 가치</h3>
+    <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+      {CORE_VALUES.map((value) => (
+        <Card class="text-center">
+          <h4 class="font-semibold text-gray-900 dark:text-white">{value.title}</h4>
+          <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{value.description}</p>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>

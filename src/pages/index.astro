@@ -1,9 +1,20 @@
 ---
 import PageLayout from '@/layouts/PageLayout.astro';
+import Hero from '@/components/home/Hero.astro';
+import CompanyHighlights from '@/components/home/CompanyHighlights.astro';
+import FeaturedServices from '@/components/home/FeaturedServices.astro';
+import Solutions from '@/components/home/Solutions.astro';
+import Strengths from '@/components/home/Strengths.astro';
+import RecentBlogPosts from '@/components/home/RecentBlogPosts.astro';
+import CTASection from '@/components/home/CTASection.astro';
 ---
 
 <PageLayout>
-  <section class="flex items-center justify-center min-h-[60vh]">
-    <h1 class="text-4xl font-bold text-primary dark:text-primary-light">Koast</h1>
-  </section>
+  <Hero />
+  <CompanyHighlights />
+  <FeaturedServices />
+  <Solutions />
+  <Strengths />
+  <RecentBlogPosts />
+  <CTASection />
 </PageLayout>

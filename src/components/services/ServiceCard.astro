@@ -1,0 +1,107 @@
+---
+import Card from '@/components/common/Card.astro';
+import type { Service } from '@/data/services';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  Radar: '📡',
+  Cpu: '🔧',
+  LineChart: '📈',
+  Globe: '🌐',
+  Monitor: '🖥️',
+  Building: '🏛️',
+};
+---
+
+<div id={service.id} class="scroll-mt-20">
+  <Card>
+    <div class="flex items-start gap-4 mb-4">
+      <div class="text-3xl">{iconMap[service.icon] || '💻'}</div>
+      <div>
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{service.title}</h3>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+          {service.description}
+        </p>
+      </div>
+    </div>
+
+    {/* Details */}
+    {service.details.length > 0 && (
+      <div class="mt-4">
+        <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          {service.products ? '주요 내용' : '주요 내용'}
+        </p>
+        <ul class="grid md:grid-cols-2 gap-1.5">
+          {service.details.map((d) => (
+            <li class="flex items-start gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <span class="text-primary-medium dark:text-primary-light mt-1">·</span>
+              {d}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {/* Products */}
+    {service.products && (
+      <div class="mt-4">
+        <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">주요 제품·기술</p>
+        <div class="flex flex-wrap gap-2">
+          {service.products.map((p) => (
+            <span class="text-xs px-2.5 py-1 rounded-full bg-primary-light/10 text-primary dark:text-primary-light">
+              {p}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Advantages */}
+    {service.advantages && (
+      <div class="mt-4">
+        <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">장점</p>
+        <ul class="space-y-1">
+          {service.advantages.map((a) => (
+            <li class="flex items-start gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <span class="text-primary-medium dark:text-primary-light mt-1">·</span>
+              {a}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {/* Applications */}
+    {service.applications && (
+      <div class="mt-4">
+        <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">적용 분야</p>
+        <div class="flex flex-wrap gap-2">
+          {service.applications.map((a) => (
+            <span class="text-xs px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+              {a}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Customers */}
+    {service.customers && (
+      <div class="mt-4">
+        <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">고객 유형</p>
+        <div class="flex flex-wrap gap-2">
+          {service.customers.map((c) => (
+            <span class="text-xs px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300">
+              {c}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+  </Card>
+</div>

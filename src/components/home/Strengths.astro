@@ -1,0 +1,20 @@
+---
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import { STRENGTHS } from '@/data/company';
+---
+
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <SectionHeading
+    title="왜 한국해양기상기술인가"
+    subtitle="해양·기상 분야에 특화된 기술력과 경험을 보유하고 있습니다."
+  />
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {STRENGTHS.map((item, i) => (
+      <div class="flex items-start gap-4">
+        <span class="text-2xl font-bold text-primary-light/50">{String(i + 1).padStart(2, '0')}</span>
+        <p class="text-gray-700 dark:text-gray-300 font-medium">{item}</p>
+      </div>
+    ))}
+  </div>
+</section>
