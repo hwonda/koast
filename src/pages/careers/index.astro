@@ -1,0 +1,116 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import SectionHeading from '@/components/common/SectionHeading.astro';
+import Card from '@/components/common/Card.astro';
+import JobCard from '@/components/careers/JobCard.astro';
+import { getCollection } from 'astro:content';
+import { CAREERS_INTRO, IDEAL_CANDIDATE, WORK_CULTURE, BENEFITS, HIRING_PROCESS } from '@/data/careers';
+
+const jobs = (await getCollection('jobs'))
+  .filter((job) => job.data.isActive)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<PageLayout title="채용" description="한국해양기상기술과 함께할 인재를 찾습니다.">
+  <!-- Hero -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <div class="max-w-3xl">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+        {CAREERS_INTRO.title}
+      </h1>
+      <p class="mt-4 text-lg text-gray-500 dark:text-gray-400 leading-relaxed">
+        {CAREERS_INTRO.description}
+      </p>
+    </div>
+  </section>
+
+  <!-- Ideal Candidate -->
+  <section class="bg-gray-50 dark:bg-gray-800/50">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">이런 분과 함께하고 싶습니다</h2>
+      <div class="space-y-3">
+        {IDEAL_CANDIDATE.map((item) => (
+          <div class="flex items-start gap-3">
+            <div class="w-2 h-2 mt-2 rounded-full bg-primary-medium dark:bg-primary-light shrink-0"></div>
+            <p class="text-gray-600 dark:text-gray-300">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Listings -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <SectionHeading
+      title="모집 중인 포지션"
+      subtitle="현재 채용 중인 직무를 확인하세요."
+    />
+
+    {jobs.length > 0 ? (
+      <div class="space-y-4">
+        {jobs.map((job) => (
+          <JobCard
+            title={job.data.title}
+            department={job.data.department}
+            location={job.data.location}
+            type={job.data.type}
+            experience={job.data.experience}
+            slug={job.id}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center text-gray-400 dark:text-gray-500 py-12">
+        <p>현재 모집 중인 포지션이 없습니다.</p>
+      </div>
+    )}
+  </section>
+
+  <!-- Work Culture -->
+  <section class="bg-gray-50 dark:bg-gray-800/50">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">일하는 방식</h2>
+          <div class="space-y-3">
+            {WORK_CULTURE.map((item) => (
+              <div class="flex items-start gap-3">
+                <div class="w-2 h-2 mt-2 rounded-full bg-primary-medium dark:bg-primary-light shrink-0"></div>
+                <p class="text-gray-600 dark:text-gray-300">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">복지·근무환경</h2>
+          <div class="flex flex-wrap gap-2">
+            {BENEFITS.map((item) => (
+              <span class="text-sm px-3 py-1.5 rounded-full bg-primary-light/10 text-primary dark:text-primary-light border border-primary-light/20">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hiring Process -->
+  <section class="max-w-6xl mx-auto px-6 py-20">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-10 text-center">채용 프로세스</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {HIRING_PROCESS.map((item, i) => (
+        <div class="text-center">
+          <div class="w-12 h-12 mx-auto rounded-full bg-primary dark:bg-primary-medium flex items-center justify-center text-white font-bold text-sm mb-3">
+            {item.step}
+          </div>
+          <h3 class="font-semibold text-gray-900 dark:text-white">{item.title}</h3>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{item.description}</p>
+          {i < HIRING_PROCESS.length - 1 && (
+            <div class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2"></div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+</PageLayout>
